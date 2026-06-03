@@ -21,15 +21,8 @@ const pokemonTypeColors = {
     unknown: "bg-gray-500",
 };
 
-const obtenerColorStat = (valor) => {
-    if (valor < 50) return "bg-red-500";
-    if (valor < 80) return "bg-yellow-400";
-    return "bg-green-500";
-};
-
-
 const normalizarStat = (valor) => {
-    const max = 100;
+    const max = 150;
     return Math.min((valor / max) * 100, 100);
 };
 
@@ -62,134 +55,163 @@ const PokemonDetalle = ({ pokemon }) => {
     ).base_stat;
 
     return (
-        <div className="flex items-start p-5 w-full">
+        <div className="flex items-start justify-center p-6 w-full gap-10">
 
-            <div className="flex flex-col items-center mx-auto">
+            <div className="flex flex-col items-center">
 
-                <div className="relative flex justify-center items-center mb-6">
+                <div className="relative w-72 h-72 flex items-center justify-center">
 
-                    <h1 className="absolute top-0 left-0 text-2xl font-bold">
+                    <h1 className="absolute top-0 left-0 text-3xl font-bold text-gray-700">
                         #{pokemon.id}
                     </h1>
 
                     <div
-                        className={`absolute w-64 h-64 rounded-full blur-3xl opacity-40 ${pokemonTypeColors[tipoPrincipal]}`}
+                        className={`absolute w-56 h-56 rounded-full ${pokemonTypeColors[tipoPrincipal]} opacity-30`}
                     ></div>
 
-                    <img
-                        src={pokemon.sprites.other.dream_world.front_default}
-                        className="relative z-10 w-64 h-64"
-                        alt={pokemon.name}
-                    />
+                    <div className="w-50 h-50 flex items-center justify-center">
+
+    <div className="w-36 h-36 flex items-center justify-center">
+
+        <img
+            src={
+                pokemon.sprites.other.dream_world.front_default ||
+                pokemon.sprites.other["official-artwork"].front_default
+            }
+            alt={pokemon.name}
+            className="w-full h-full object-contain"
+        />
+
+    </div>
+
+</div>
+
                 </div>
 
-                <h1 className="text-3xl font-bold capitalize mb-4">
+                <h1 className="text-4xl font-bold capitalize mb-8">
                     {pokemon.name}
                 </h1>
 
-                <div className="w-80 space-y-4">
+                <div className="w-96 space-y-5">
 
                     <div>
-                        <div className="flex justify-between">
-                            <span>HP</span>
+                        <div className="flex justify-between mb-1">
+                            <span className="font-semibold">HP</span>
                             <span>{hp}</span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-3">
+
+                        <div className="w-full bg-gray-200 rounded-full h-4">
                             <div
-                                className={`h-3 rounded-full ${obtenerColorStat(hp)}`}
+                                className={`h-4 rounded-full ${pokemonTypeColors[tipoPrincipal]}`}
                                 style={{ width: `${normalizarStat(hp)}%` }}
-                            />
+                            ></div>
                         </div>
                     </div>
 
                     <div>
-                        <div className="flex justify-between">
-                            <span>Ataque</span>
+                        <div className="flex justify-between mb-1">
+                            <span className="font-semibold">Ataque</span>
                             <span>{ataque}</span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-3">
+
+                        <div className="w-full bg-gray-200 rounded-full h-4">
                             <div
-                                className={`h-3 rounded-full ${obtenerColorStat(ataque)}`}
+                                className={`h-4 rounded-full ${pokemonTypeColors[tipoPrincipal]}`}
                                 style={{ width: `${normalizarStat(ataque)}%` }}
-                            />
+                            ></div>
                         </div>
                     </div>
 
                     <div>
-                        <div className="flex justify-between">
-                            <span>Defensa</span>
+                        <div className="flex justify-between mb-1">
+                            <span className="font-semibold">Defensa</span>
                             <span>{defensa}</span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-3">
+
+                        <div className="w-full bg-gray-200 rounded-full h-4">
                             <div
-                                className={`h-3 rounded-full ${obtenerColorStat(defensa)}`}
+                                className={`h-4 rounded-full ${pokemonTypeColors[tipoPrincipal]}`}
                                 style={{ width: `${normalizarStat(defensa)}%` }}
-                            />
+                            ></div>
                         </div>
                     </div>
 
                     <div>
-                        <div className="flex justify-between">
-                            <span>Ataque Especial</span>
+                        <div className="flex justify-between mb-1">
+                            <span className="font-semibold">Ataque Especial</span>
                             <span>{ataqueEspecial}</span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-3">
+
+                        <div className="w-full bg-gray-200 rounded-full h-4">
                             <div
-                                className={`h-3 rounded-full ${obtenerColorStat(ataqueEspecial)}`}
+                                className={`h-4 rounded-full ${pokemonTypeColors[tipoPrincipal]}`}
                                 style={{ width: `${normalizarStat(ataqueEspecial)}%` }}
-                            />
+                            ></div>
                         </div>
                     </div>
 
                     <div>
-                        <div className="flex justify-between">
-                            <span>Defensa Especial</span>
+                        <div className="flex justify-between mb-1">
+                            <span className="font-semibold">Defensa Especial</span>
                             <span>{defensaEspecial}</span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-3">
+
+                        <div className="w-full bg-gray-200 rounded-full h-4">
                             <div
-                                className={`h-3 rounded-full ${obtenerColorStat(defensaEspecial)}`}
+                                className={`h-4 rounded-full ${pokemonTypeColors[tipoPrincipal]}`}
                                 style={{ width: `${normalizarStat(defensaEspecial)}%` }}
-                            />
+                            ></div>
                         </div>
                     </div>
 
                     <div>
-                        <div className="flex justify-between">
-                            <span>Velocidad</span>
+                        <div className="flex justify-between mb-1">
+                            <span className="font-semibold">Velocidad</span>
                             <span>{velocidad}</span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-3">
+
+                        <div className="w-full bg-gray-200 rounded-full h-4">
                             <div
-                                className={`h-3 rounded-full ${obtenerColorStat(velocidad)}`}
+                                className={`h-4 rounded-full ${pokemonTypeColors[tipoPrincipal]}`}
                                 style={{ width: `${normalizarStat(velocidad)}%` }}
-                            />
+                            ></div>
                         </div>
                     </div>
 
                 </div>
+
             </div>
 
-            <div className="w-48 flex flex-col items-start ml-6">
+            <div className="w-52 flex flex-col items-start">
 
-                <h1 className="text-lg font-bold mb-2">
+                <h1 className="text-xl font-bold mb-4">
                     Tipos
                 </h1>
 
-                <div className="flex flex-col gap-2 mb-4">
+                <div className="flex flex-col gap-3 mb-8 w-full">
+
                     {pokemon.types.map((tipo) => (
                         <span
                             key={tipo.type.name}
-                            className={`px-4 py-1 rounded-full text-white font-bold ${pokemonTypeColors[tipo.type.name]}`}
+                            className={`px-4 py-2 rounded-full text-white font-bold text-center capitalize ${pokemonTypeColors[tipo.type.name]}`}
                         >
                             {tipo.type.name}
                         </span>
                     ))}
+
                 </div>
 
-                <h1 className="text-xl font-bold">
-                    Peso: {pokemon.weight / 10} kg
-                </h1>
+                <div className="space-y-2">
+
+                    <h1 className="text-xl font-bold">
+                        Peso
+                    </h1>
+
+                    <p className="text-lg">
+                        {pokemon.weight / 10} kg
+                    </p>
+
+                </div>
 
             </div>
 
